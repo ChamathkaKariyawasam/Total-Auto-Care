@@ -4,7 +4,7 @@ Marketing website for TAC Total Auto Care, built with React, React Router and Vi
 
 ## Run locally
 
-Requirements: Node.js 18 or newer.
+Requirements: Node.js 22 or newer.
 
 ```bash
 npm ci

@@ -194,7 +194,7 @@ export const gallery = [
       "Old_school_Evo/img7.jpg",
       "Old_school_Evo/img8.jpg",
     ],
-    image: "Old_School_Evo/img1.jpg",
+    image: "Old_school_Evo/img1.jpg",
   },
   {
     cat: "Comfort",
@@ -250,23 +250,48 @@ export const testimonials = [
     text: "The diagnostic service helped find a problem I had been dealing with for weeks. Great communication and workmanship.",
   },
 ];
+export const advertisements = [
+  {
+    image: "Advertisements/Full_service_14000.jpeg",
+    alt: "Full_service_14000",
+  },
+  {
+    image: "Advertisements/Full_service_17000.jpeg",
+    alt: "Full_service_17000",
+  },
+  {
+    image: "Advertisements/Full_service_18000.jpeg",
+    alt: "Full_service_18000",
+  },
+  {
+    image: "Advertisements/Wiper_ad_1.jpeg",
+    alt: "Wiper_ad_1",
+  },
+  {
+    image: "Advertisements/Tint_ad_1.jpeg",
+    alt: "Tint_ad_1",
+  },
+];
 export const jobs = [
   {
-    title: "Automotive Technician",
+    title: "Window Tint & PPF Installer",
     type: "Full Time",
-    location: "Workshop",
-    desc: "Join the technical team and handle servicing, diagnostics and mechanical repair work.",
+    location: "Colombo",
+    image: "Vacancies/tint_applier.jpeg",
+    desc: "Handle surface preparation, custom film cutting and professional tint and PPF installations.",
   },
   {
-    title: "Technician Assistant",
+    title: "Service Advisor – Mechanical / Bodyshop",
     type: "Full Time",
-    location: "Workshop",
-    desc: "Support technicians with vehicle inspections, workshop preparation and maintenance tasks.",
+    location: "Colombo",
+    image: "Vacancies/all.jpeg",
+    desc: "Oversee workshop operations, drive sales targets and manage client communication and satisfaction.",
   },
   {
-    title: "Service Advisor",
+    title: "Receptionist / Office Assistant (Female)",
     type: "Full Time",
     location: "Customer Service",
-    desc: "Help customers understand service needs, coordinate bookings and maintain a high service experience.",
+    image: "Vacancies/all.jpeg",
+    desc: "Manage front-desk communications, assist daily office operations and deliver professional client support.",
   },
 ];

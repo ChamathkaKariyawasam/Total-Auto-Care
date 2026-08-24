@@ -1,8 +1,34 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle";
 import ServiceCard from "../components/ServiceCard";
-import { services, gallery, testimonials } from "../data/data";
+import { services, gallery, testimonials, advertisements } from "../data/data";
 export default function Home() {
+  const [advertisement, setAdvertisement] = useState(null);
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * advertisements.length);
+    setAdvertisement(advertisements[randomIndex]);
+  }, []);
+
+  useEffect(() => {
+    if (!advertisement) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setAdvertisement(null);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [advertisement]);
+
+  const openAdvertisement = () => {
+    const randomIndex = Math.floor(Math.random() * advertisements.length);
+    setAdvertisement(advertisements[randomIndex]);
+  };
+
   return (
     <main>
       <section className="hero">
@@ -210,6 +236,16 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      {advertisement && (
+        <div className="advertisement-backdrop" role="presentation" onClick={() => setAdvertisement(null)}>
+          <div className="advertisement-popup" role="dialog" aria-modal="true" aria-label="TAC special offer" onClick={(event) => event.stopPropagation()}>
+            <button className="advertisement-close" type="button" aria-label="Close offer" onClick={() => setAdvertisement(null)}>
+              ×
+            </button>
+            <img src={`${import.meta.env.BASE_URL}${advertisement.image}`} alt={advertisement.alt} />
+          </div>
+        </div>
+      )}
     </main>
   );
 }

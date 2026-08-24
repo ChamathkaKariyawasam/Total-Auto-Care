@@ -18,8 +18,7 @@ export default function OurWork() {
             <em>IN THE REAL WORLD.</em>
           </h1>
           <p>
-            Explore a selection of sample workshop work. Replace the demo images
-            with TAC's actual project photography.
+            Explore a selection of sample workshop work.
           </p>
         </div>
       </div>

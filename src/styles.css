@@ -10,6 +10,7 @@
   --muted: #a1a1a1;
   --max: 1240px;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -44,7 +45,25 @@ img {
   margin: auto;
 }
 .app {
-  overflow: visible;
+  overflow-x: hidden;
+}
+.page-transition {
+  animation: page-enter 420ms ease-out both;
+}
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
 }
 .nav {
   height: 86px;
@@ -603,6 +622,58 @@ img {
   background: #050505;
   color: white;
 }
+.btn-offer {
+  background: var(--lime);
+  color: #050505;
+  border: 1px solid var(--lime);
+}
+.advertisement-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.advertisement-popup {
+  position: relative;
+  width: min(760px, 100%);
+  max-height: calc(100vh - 48px);
+  padding: 10px;
+  background: #111;
+  border: 1px solid #3b3b3b;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  animation: advertisement-in 180ms ease-out;
+}
+.advertisement-popup img {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 68px);
+  object-fit: contain;
+}
+.advertisement-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  z-index: 1;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--lime);
+  border-radius: 50%;
+  background: var(--lime);
+  color: #050505;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+@keyframes advertisement-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
 .footer {
   border-top: 1px solid #282828;
   padding: 70px 0 25px;
@@ -993,17 +1064,32 @@ img {
   margin: 15px 0 45px;
 }
 .jobs {
-  border-top: 1px solid #292929;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 .job {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 30px;
-  padding: 28px 0;
-  border-bottom: 1px solid #292929;
+  align-content: start;
+  gap: 20px;
+  background: #111;
+  border: 1px solid #292929;
   position: relative;
 }
-.job > div > span {
+.job-image {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: #1a1a1a;
+  filter: saturate(0.7);
+}
+.job-content {
+  padding: 4px 0 0 22px;
+}
+.job-content > span {
   color: #777;
   text-transform: uppercase;
   font-size: 9px;
@@ -1022,6 +1108,8 @@ img {
   line-height: 1.7;
 }
 .job button {
+  align-self: end;
+  margin: 0 22px 22px 0;
   height: 45px;
   background: transparent;
   border: 1px solid #444;
@@ -1041,6 +1129,7 @@ img {
   background: #111;
   border-left: 2px solid var(--lime);
   padding: 12px 20px;
+  margin: 0 22px 22px;
 }
 .job-open a {
   color: var(--lime);
@@ -1347,6 +1436,9 @@ img {
   .stat-grid > div:first-child {
     padding-left: 30px;
   }
+  .jobs {
+    grid-template-columns: 1fr 1fr;
+  }
   .container {
     width: min(calc(100% - 36px), var(--max));
   }
@@ -1455,6 +1547,9 @@ img {
     min-height: 320px;
   }
   .job {
+    grid-template-columns: 1fr;
+  }
+  .jobs {
     grid-template-columns: 1fr;
   }
   .job button {
@@ -1887,4 +1982,78 @@ img {
   line-height: 1.6;
 }
 
+}
+
+/* Final responsive overrides for the shared and late-added layouts. */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 900px) {
+  .nav-inner {
+    width: min(calc(100% - 36px), var(--max));
+  }
+
+  .brand img {
+    width: 180px;
+    height: 74px;
+  }
+
+  .map-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .map-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand img {
+    width: 125px;
+  }
+
+  .hero h1,
+  .page-head h1,
+  .page-hero h1 {
+    font-size: clamp(48px, 16vw, 62px);
+  }
+
+  .service-grid,
+  .review-grid,
+  .work-grid,
+  .gallery-grid,
+  .value-grid,
+  .jobs {
+    grid-template-columns: 1fr;
+  }
+
+  .work-grid {
+    grid-auto-rows: 260px;
+  }
+
+  .feature-content {
+    padding: 60px 15px;
+  }
+
+  .map-container {
+    height: 350px;
+    padding: 18px;
+  }
+
+  .small-map {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .advertisement-backdrop {
+    padding: 16px;
+  }
+
+  .advertisement-close {
+    top: -10px;
+    right: -10px;
+  }
 }
