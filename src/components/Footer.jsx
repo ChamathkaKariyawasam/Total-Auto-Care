@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+const logoSrc = `${import.meta.env.BASE_URL}tac-logo.png`;
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-top">
           <div>
-            <img className="footer-logo" src="/tac-logo.png" alt="TAC" />
+            <img className="footer-logo" src={logoSrc} alt="TAC" />
             <p className="footer-copy">
               Professional automotive service, diagnostics and repair built
               around quality workmanship and dependable care.

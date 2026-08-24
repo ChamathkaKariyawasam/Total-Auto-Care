@@ -8,13 +8,14 @@ const links = [
   ["/careers", "Careers"],
   ["/contact", "Contact"],
 ];
+const logoSrc = `${import.meta.env.BASE_URL}tac-logo.png`;
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   return (
     <header className="nav">
       <div className="container nav-inner">
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
-          <img src="/tac-logo.png" alt="TAC Total Auto Care" />
+          <img src={logoSrc} alt="TAC Total Auto Care" />
         </Link>
         <button
           className="menu"
